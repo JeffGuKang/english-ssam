@@ -50,42 +50,42 @@ AIが自動的に適切なインストールコマンドを実行します。
 
 ### OpenCode
 ```bash
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh | bash -s -- --tool=opencode --global
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=opencode --global
 ```
 
 ### Cursor
 ```bash
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh | bash -s -- --tool=cursor --local
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=cursor --local
 ```
 
 ### Claude Code CLI
 ```bash
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh | bash -s -- --tool=claude-code --local
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=claude-code --local
 ```
 
 ### GitHub Copilot
 ```bash
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh | bash -s -- --tool=copilot --local
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=copilot --local
 ```
 
 ### Windsurf
 ```bash
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh | bash -s -- --tool=windsurf --local
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=windsurf --local
 ```
 
 ### Aider
 ```bash
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh | bash -s -- --tool=aider --global
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=aider --global
 ```
 
 ### Continue.dev
 ```bash
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh | bash -s -- --tool=continue --global
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=continue --global
 ```
 
 ### Zed
 ```bash
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh | bash -s -- --tool=zed --local
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=zed --local
 ```
 
 ## 📝 使用例
@@ -123,7 +123,7 @@ AIへの依頼を行うと、回答の冒頭で以下のような添削結果が
 リポジトリをクローンして手動で設定する場合：
 
 ```bash
-git clone https://github.com/code-yeongyu/english-ssam.git
+git clone https://github.com/JeffGuKang/english-ssam.git
 cd english-ssam
 # 各ツールの設定ディレクトリに skill/english-ssam.md をコピーしてください
 ```
@@ -133,7 +133,7 @@ cd english-ssam
 インストール時に作成された設定を削除するには、以下のコマンドを実行してください。
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh | bash -s -- --uninstall
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --uninstall
 ```
 
 ## 🤝 貢献方法

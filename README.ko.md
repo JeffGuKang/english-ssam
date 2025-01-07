@@ -51,42 +51,42 @@ AI가 자동으로 적절한 설치 명령어를 실행합니다.
 
 ### OpenCode (전역 설치)
 ```bash
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh | bash -s -- --tool=opencode --global
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=opencode --global
 ```
 
 ### Cursor (현재 프로젝트)
 ```bash
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh | bash -s -- --tool=cursor --local
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=cursor --local
 ```
 
 ### Claude Code CLI (현재 프로젝트)
 ```bash
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh | bash -s -- --tool=claude-code --local
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=claude-code --local
 ```
 
 ### GitHub Copilot (현재 프로젝트)
 ```bash
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh | bash -s -- --tool=copilot --local
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=copilot --local
 ```
 
 ### Windsurf (현재 프로젝트)
 ```bash
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh | bash -s -- --tool=windsurf --local
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=windsurf --local
 ```
 
 ### Aider (전역 설치)
 ```bash
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh | bash -s -- --tool=aider --global
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=aider --global
 ```
 
 ### Continue.dev (전역 설치)
 ```bash
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh | bash -s -- --tool=continue --global
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=continue --global
 ```
 
 ### Zed (현재 프로젝트)
 ```bash
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh | bash -s -- --tool=zed --local
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=zed --local
 ```
 
 ## 🚀 사용 예시
@@ -127,7 +127,7 @@ curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scri
 
 ```bash
 # 예: Cursor에서 제거
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh | bash -s -- --tool=cursor --local --uninstall
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=cursor --local --uninstall
 ```
 
 ## 🤝 기여하기

@@ -88,55 +88,55 @@ First, check which AI tool the user is using by looking at:
 | "install english-ssam globally" | Use OpenCode/Aider/Continue global install |
 | "install english-ssam locally" | Use tool-specific local install |
 | "영어쌤 설치해줘" / "잉글리쉬쌤 설치해줘" | Detect tool, install appropriately |
-| "install english-ssam for cursor" | `curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh \| bash -s -- --tool=cursor --local` |
-| "install english-ssam for claude" | `curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh \| bash -s -- --tool=claude-code --local` |
+| "install english-ssam for cursor" | `curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh \| bash -s -- --tool=cursor --local` |
+| "install english-ssam for claude" | `curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh \| bash -s -- --tool=claude-code --local` |
 
 ### Tool-Specific Commands
 
 ```bash
 # OpenCode (global)
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh | bash -s -- --tool=opencode --global
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=opencode --global
 
 # Cursor (local - creates .cursorrules)
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh | bash -s -- --tool=cursor --local
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=cursor --local
 
 # Claude Code CLI (local - creates CLAUDE.md)
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh | bash -s -- --tool=claude-code --local
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=claude-code --local
 
 # GitHub Copilot (local - creates .github/copilot-instructions.md)
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh | bash -s -- --tool=copilot --local
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=copilot --local
 
 # Windsurf (local - creates .windsurfrules)
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh | bash -s -- --tool=windsurf --local
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=windsurf --local
 
 # Aider (global)
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh | bash -s -- --tool=aider --global
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=aider --global
 
 # Continue.dev (global)
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh | bash -s -- --tool=continue --global
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=continue --global
 
 # Zed (local - creates .zed/prompt.md)
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh | bash -s -- --tool=zed --local
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=zed --local
 ```
 
 ### Toggle (Enable/Disable)
 
 ```bash
 # Disable temporarily (keeps backup)
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh | bash -s -- --tool=cursor --local --disable
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=cursor --local --disable
 
 # Enable (restore from backup)
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh | bash -s -- --tool=cursor --local --enable
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=cursor --local --enable
 
 # Check status
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh | bash -s -- --tool=cursor --local --status
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=cursor --local --status
 ```
 
 ### Uninstall
 
 Add `--uninstall` flag to any install command:
 ```bash
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh | bash -s -- --tool=cursor --local --uninstall
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=cursor --local --uninstall
 ```
 
 ## Natural Language Triggers

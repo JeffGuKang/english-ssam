@@ -55,42 +55,42 @@ AI 将自动运行正确的安装命令。
 
 ### OpenCode (全局)
 ```bash
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh | bash -s -- --tool=opencode --global
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=opencode --global
 ```
 
 ### Cursor (当前项目)
 ```bash
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh | bash -s -- --tool=cursor --local
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=cursor --local
 ```
 
 ### Claude Code (当前项目)
 ```bash
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh | bash -s -- --tool=claude-code --local
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=claude-code --local
 ```
 
 ### GitHub Copilot (当前项目)
 ```bash
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh | bash -s -- --tool=copilot --local
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=copilot --local
 ```
 
 ### Windsurf (当前项目)
 ```bash
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh | bash -s -- --tool=windsurf --local
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=windsurf --local
 ```
 
 ### Aider (全局)
 ```bash
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh | bash -s -- --tool=aider --global
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=aider --global
 ```
 
 ### Continue.dev (全局)
 ```bash
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh | bash -s -- --tool=continue --global
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=continue --global
 ```
 
 ### Zed (当前项目)
 ```bash
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh | bash -s -- --tool=zed --local
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=zed --local
 ```
 
 ## ✨ 您将看到的效果
@@ -146,7 +146,7 @@ curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scri
 
 如果您不想使用脚本，可以手动安装：
 
-1. 下载 [ENGLISH_SSAM.md](https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/ENGLISH_SSAM.md) 文件。
+1. 下载 [ENGLISH_SSAM.md](https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/ENGLISH_SSAM.md) 文件。
 2. 将其内容添加到您 AI 工具的“自定义指令” (Custom Instructions) 或对应的配置文件中。
    - **Cursor**: 放入 `.cursorrules`
    - **Claude Code**: 放入 `CLAUDE.md`
@@ -156,7 +156,7 @@ curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scri
 
 运行安装脚本并加上 `--uninstall` 参数：
 ```bash
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh | bash -s -- --tool=TOOL --MODE --uninstall
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=TOOL --MODE --uninstall
 ```
 
 ## 🤝 贡献方式

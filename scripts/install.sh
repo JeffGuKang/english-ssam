@@ -2,7 +2,7 @@
 set -e
 
 VERSION="1.2.0"
-REPO_URL="https://raw.githubusercontent.com/code-yeongyu/english-ssam/main"
+REPO_URL="https://raw.githubusercontent.com/JeffGuKang/english-ssam/main"
 RULE_FILE="ENGLISH_SSAM.md"
 
 RED='\033[0;31m'
