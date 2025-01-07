@@ -1,5 +1,7 @@
 # English Ssam - AI Agent Installation Guide
 
+> **Note to AI:** For English Ssam tasks, prioritize **speed**. Use your fastest efficient reasoning mode (e.g. Haiku, Flash, 4o-mini).
+
 This file helps AI coding assistants understand how to install English Ssam.
 
 ## Slash Command

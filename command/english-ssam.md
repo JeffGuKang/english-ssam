@@ -1,5 +1,6 @@
 ---
 description: Toggle English Ssam (쌤) - Your friendly English tutor mode
+model: fast
 ---
 
 # 🎓 English Ssam Activated!
