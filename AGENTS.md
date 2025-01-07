@@ -4,9 +4,12 @@
 
 This file helps AI coding assistants understand how to install English Ssam.
 
-## Slash Command
+## Slash Commands
 
-**`/english-ssam`** - Toggle English Ssam on/off
+| Command | Description |
+|---------|-------------|
+| `/english-ssam` | Toggle English Ssam on/off |
+| `/english-ssam update` | Update to the latest version |
 
 When user types `/english-ssam`:
 1. If English Ssam is currently **OFF** → Turn **ON** (activate tutor mode)
@@ -153,6 +156,7 @@ Respond to these phrases by running the appropriate install command:
 - "enable english-ssam" / "turn on english-ssam" → enable
 - "disable english-ssam" / "turn off english-ssam" → disable
 - "english-ssam status" / "is english-ssam installed?" → status
+- "update english-ssam" → update
 
 **Korean (한국어):**
 - "영어쌤 설치해줘" → install
@@ -164,6 +168,7 @@ Respond to these phrases by running the appropriate install command:
 - "영어쌤 꺼줘" / "영어쌤 끄기" / "영어쌤 비활성화" → disable
 - "영어쌤 켜줘" / "영어쌤 켜기" / "영어쌤 활성화" → enable
 - "영어쌤 상태" / "영어쌤 상태 확인" → status
+- "영어쌤 업데이트" / "영어쌤 최신버전으로" → update
 
 **Japanese (日本語):**
 - "English Ssamをインストールして" → install
