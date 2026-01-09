@@ -4,11 +4,14 @@ set -e
 VERSION="1.2.0"
 REPO_URL="https://raw.githubusercontent.com/JeffGuKang/english-ssam/main"
 RULE_FILE="ENGLISH_SSAM.md"
+VERSION_CHECK_FILE="$HOME/.english-ssam-last-check"
+CHECK_INTERVAL_DAYS=7
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
+CYAN='\033[0;36m'
 NC='\033[0m'
 
 print_banner() {
@@ -59,6 +62,96 @@ download_rule() {
     else
         echo -e "${RED}Error: curl or wget is required${NC}"
         exit 1
+    fi
+}
+
+# Compare semantic versions: returns 0 if v1 < v2, 1 otherwise
+version_lt() {
+    local v1="$1"
+    local v2="$2"
+    
+    # Remove 'v' prefix if present
+    v1="${v1#v}"
+    v2="${v2#v}"
+    
+    # Split into parts
+    local IFS='.'
+    read -ra V1_PARTS <<< "$v1"
+    read -ra V2_PARTS <<< "$v2"
+    
+    for i in 0 1 2; do
+        local p1="${V1_PARTS[$i]:-0}"
+        local p2="${V2_PARTS[$i]:-0}"
+        if (( p1 < p2 )); then
+            return 0
+        elif (( p1 > p2 )); then
+            return 1
+        fi
+    done
+    return 1  # Equal versions
+}
+
+# Check if we should perform a version check (based on time interval)
+should_check_version() {
+    if [ ! -f "$VERSION_CHECK_FILE" ]; then
+        return 0  # Never checked before
+    fi
+    
+    local last_check
+    last_check=$(cat "$VERSION_CHECK_FILE" 2>/dev/null || echo "0")
+    local now
+    now=$(date +%s)
+    local diff=$(( (now - last_check) / 86400 ))  # Days since last check
+    
+    if [ "$diff" -ge "$CHECK_INTERVAL_DAYS" ]; then
+        return 0  # Time to check
+    fi
+    return 1  # Too soon
+}
+
+# Save current timestamp as last check time
+save_check_timestamp() {
+    date +%s > "$VERSION_CHECK_FILE"
+}
+
+# Fetch remote version and compare with local
+check_for_updates() {
+    local remote_version=""
+    
+    # Try to fetch remote VERSION file
+    if command -v curl &> /dev/null; then
+        remote_version=$(curl -fsSL "$REPO_URL/VERSION" 2>/dev/null | tr -d '[:space:]')
+    elif command -v wget &> /dev/null; then
+        remote_version=$(wget -qO- "$REPO_URL/VERSION" 2>/dev/null | tr -d '[:space:]')
+    fi
+    
+    if [ -z "$remote_version" ]; then
+        return  # Failed to fetch, skip silently
+    fi
+    
+    # Save that we checked
+    save_check_timestamp
+    
+    # Compare versions
+    if version_lt "$VERSION" "$remote_version"; then
+        echo ""
+        echo -e "${CYAN}┌─────────────────────────────────────────────────────────────┐${NC}"
+        echo -e "${CYAN}│${NC}  ${YELLOW}📦 Update Available!${NC}                                       ${CYAN}│${NC}"
+        echo -e "${CYAN}│${NC}                                                             ${CYAN}│${NC}"
+        echo -e "${CYAN}│${NC}  Current version: ${RED}$VERSION${NC}                                    ${CYAN}│${NC}"
+        echo -e "${CYAN}│${NC}  Latest version:  ${GREEN}$remote_version${NC}                                    ${CYAN}│${NC}"
+        echo -e "${CYAN}│${NC}                                                             ${CYAN}│${NC}"
+        echo -e "${CYAN}│${NC}  Run with ${YELLOW}--update${NC} to get the latest version              ${CYAN}│${NC}"
+        echo -e "${CYAN}│${NC}  Or tell your AI: ${YELLOW}\"update english-ssam\"${NC}                   ${CYAN}│${NC}"
+        echo -e "${CYAN}└─────────────────────────────────────────────────────────────┘${NC}"
+        echo ""
+    fi
+}
+
+# Perform weekly version check (non-blocking, runs in background context)
+maybe_check_for_updates() {
+    if should_check_version; then
+        check_for_updates
     fi
 }
 
@@ -511,6 +604,7 @@ print_banner
 
 if [ "$ACTION" = "status" ]; then
     check_status "$TOOL" "$MODE"
+    maybe_check_for_updates
     exit 0
 fi
 
@@ -518,6 +612,7 @@ if [ "$ACTION" = "disable" ]; then
     disable_tool "$TOOL" "$MODE"
     echo ""
     echo -e "${GREEN}English Ssam is now disabled.${NC}"
+    maybe_check_for_updates
     exit 0
 fi
 
@@ -525,6 +620,7 @@ if [ "$ACTION" = "enable" ]; then
     enable_tool "$TOOL" "$MODE"
     echo ""
     echo -e "${GREEN}English Ssam is now enabled!${NC}"
+    maybe_check_for_updates
     exit 0
 fi
 
@@ -561,10 +657,12 @@ case $TOOL in
 esac
 
 if [ "$ACTION" = "update" ]; then
+    save_check_timestamp
     echo ""
     echo -e "${GREEN}English Ssam has been updated to the latest version!${NC}"
 elif [ "$ACTION" = "install" ]; then
     echo ""
     echo -e "${GREEN}English Ssam is ready to help you improve your English!${NC}"
     echo -e "Use ${YELLOW}--disable${NC} to temporarily turn off, ${YELLOW}--enable${NC} to restore."
+    maybe_check_for_updates
 fi
