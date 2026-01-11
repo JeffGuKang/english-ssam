@@ -36,6 +36,8 @@
     "README.zh.md"
   ],
   "scripts": {
+    "test": "bats tests/install/",
+    "test:all": "./tests/run_all_tests.sh",
     "install:opencode": "./scripts/install.sh --tool=opencode --global",
     "install:cursor": "./scripts/install.sh --tool=cursor --local",
     "install:claude-code": "./scripts/install.sh --tool=claude-code --local",
