@@ -5,11 +5,19 @@ model: opencode/grok-code
 
 # English Ssam Command
 
-## Command Syntax
+This command accepts an optional argument. Parse the user's input to determine the action.
 
-```
-/english-ssam [mode]
-```
+## Argument Parsing (REQUIRED)
+
+**Parse the command argument from user input:**
+
+1. If user typed `/english-ssam` (no argument) → **Toggle ON/OFF**
+2. If user typed `/english-ssam status` → **Show Status**
+3. If user typed `/english-ssam check` → **Set Check Mode**
+4. If user typed `/english-ssam confirm` → **Set Confirm Mode**
+5. If user typed `/english-ssam auto` → **Set Auto Mode**
+6. If user typed `/english-ssam silent` → **Set Silent Mode**
+7. If user typed `/english-ssam [unknown]` → **Show error and list valid options**
 
 ## Available Commands
 
@@ -24,7 +32,7 @@ model: opencode/grok-code
 
 ---
 
-## Toggle Logic (when no argument)
+## Toggle Logic (when no argument or just `/english-ssam`)
 
 1. **Check your current English Ssam state** from this conversation's context
 2. **If currently OFF (or first time)** → Turn ON and show the activation message
@@ -166,22 +174,49 @@ English Ssam mode set to: **[mode name]**
 
 ---
 
-## When Showing Status, Display:
+## When Showing Status (`/english-ssam status`), Display:
 
 ```
 # 🎓 English Ssam Status
 
 | Setting | Value |
 |---------|-------|
-| State | ON/OFF |
-| Mode | check/confirm/auto/silent |
+| State | [ON or OFF based on current state] |
+| Mode | [current mode: check/confirm/auto/silent] |
 
-## Mode Descriptions
+## Available Modes
 
-- **check**: Show corrections, execute immediately
+- **check**: Show corrections, execute immediately (default)
 - **confirm**: Show corrections, wait for approval
 - **auto**: Show corrections, auto-proceed
 - **silent**: Fix silently, no display
+
+## Commands
+
+- `/english-ssam` - Toggle on/off
+- `/english-ssam [mode]` - Change mode
+- `/english-ssam status` - This status display
+```
+
+---
+
+## When Invalid Argument, Display:
+
+```
+# ❌ Unknown Command
+
+"/english-ssam [what user typed]" is not recognized.
+
+## Valid Commands
+
+| Command | Action |
+|---------|--------|
+| `/english-ssam` | Toggle ON/OFF |
+| `/english-ssam check` | Check Mode (default) |
+| `/english-ssam confirm` | Confirm Mode |
+| `/english-ssam auto` | Auto Mode |
+| `/english-ssam silent` | Silent Mode |
+| `/english-ssam status` | Show status |
 ```
 
 ---
