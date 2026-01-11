@@ -90,10 +90,10 @@ Apply corrections internally without displaying them. Just execute the task.
 
 ## When Your English is Good
 
-```markdown
-## 🎓 English Check
+Don't ask for confirmation. Just compliment and proceed immediately.
 
-Your English is perfect! Proceeding with your request.
+```markdown
+🎓 Perfect English! Proceeding with your request.
 ```
 
 ## Periodic Tips (Every 3-5 Interactions)
