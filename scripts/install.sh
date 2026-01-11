@@ -31,7 +31,7 @@ print_help() {
     echo ""
     echo "Options:"
     echo "  --tool=TOOL       AI tool to install for (required)"
-    echo "                    Supported: opencode, cursor, claude-code, copilot, windsurf, aider, continue, zed"
+    echo "                    Supported: opencode, cursor, claude-code, copilot, windsurf, aider, continue, zed, codex"
     echo "  --global          Install globally (user-wide)"
     echo "  --local           Install locally (current project)"
     echo "  --update          Update to the latest version"
@@ -187,6 +187,13 @@ get_file_path() {
             ;;
         zed)
             echo ".zed/prompt.md"
+            ;;
+        codex)
+            if [ "$mode" = "global" ]; then
+                echo "$HOME/.codex/AGENTS.md"
+            else
+                echo "AGENTS.md"
+            fi
             ;;
     esac
 }
@@ -662,6 +669,44 @@ install_zed() {
     echo -e "Use ${YELLOW}/english-ssam${NC} to toggle on/off"
 }
 
+install_codex() {
+    local mode="$1"
+    local action="$2"
+    
+    local dest
+    if [ "$mode" = "global" ]; then
+        dest="$HOME/.codex/AGENTS.md"
+    else
+        dest="AGENTS.md"
+    fi
+    
+    local verb="Installing"
+    local done_verb="Installed"
+    if [ "$action" = "update" ]; then
+        verb="Updating"
+        done_verb="Updated"
+    fi
+
+    if [ "$action" = "uninstall" ]; then
+        echo -e "${YELLOW}Uninstalling English Ssam from Codex CLI...${NC}"
+        rm -f "$dest" "${dest}.disabled"
+        echo -e "${GREEN}Uninstalled successfully!${NC}"
+        return
+    fi
+    
+    echo -e "${BLUE}$verb English Ssam for Codex CLI ($mode)...${NC}"
+    
+    if [ "$mode" = "global" ]; then
+        mkdir -p "$HOME/.codex"
+    fi
+    
+    download_rule "$dest"
+    rm -f "${dest}.disabled"
+    echo -e "${GREEN}$done_verb successfully!${NC}"
+    echo -e "File: ${YELLOW}$dest${NC}"
+    echo -e "Use ${YELLOW}/english-ssam${NC} to toggle on/off"
+}
+
 TOOL=""
 MODE=""
 ACTION="install"
@@ -766,9 +811,12 @@ case $TOOL in
     zed)
         install_zed "$MODE" "$ACTION"
         ;;
+    codex)
+        install_codex "$MODE" "$ACTION"
+        ;;
     *)
         echo -e "${RED}Unknown tool: $TOOL${NC}"
-        echo "Supported tools: opencode, cursor, claude-code, copilot, windsurf, aider, continue, zed"
+        echo "Supported tools: opencode, cursor, claude-code, copilot, windsurf, aider, continue, zed, codex"
         exit 1
         ;;
 esac
