@@ -144,6 +144,24 @@ Add `--uninstall` flag to any install command:
 curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=cursor --local --uninstall
 ```
 
+## Automatic Update Checks
+
+English Ssam automatically checks for updates **once per week** when running any install.sh command. If a newer version is available, users will see a notification like:
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  📦 Update Available!                                       │
+│                                                             │
+│  Current version: 1.2.0                                     │
+│  Latest version:  1.3.0                                     │
+│                                                             │
+│  Run with --update to get the latest version                │
+│  Or tell your AI: "update english-ssam"                     │
+└─────────────────────────────────────────────────────────────┘
+```
+
+The check timestamp is stored in `~/.english-ssam-last-check`.
+
 ## Natural Language Triggers
 
 Respond to these phrases by running the appropriate install command:
