@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-VERSION="1.4.0"
+VERSION="1.5.0"
 REPO_URL="https://raw.githubusercontent.com/JeffGuKang/english-ssam/main"
 RULE_FILE="ENGLISH_SSAM.md"
 VERSION_CHECK_FILE="$HOME/.english-ssam-last-check"
@@ -257,9 +257,11 @@ install_opencode() {
     fi
     
     local plugin_dir="$HOME/.config/opencode/plugin/english-ssam"
+    local command_dir="$HOME/.config/opencode/command"
     local plugin_dest="$plugin_dir/plugin.md"
     local skill_dest="$plugin_dir/skill.md"
-    local cmd_dest="$plugin_dir/command.md"
+    local cmd_dest="$command_dir/english-ssam.md"
+    local config_file="$HOME/.config/opencode/opencode.json"
     
     local verb="Installing"
     local done_verb="Installed"
@@ -271,26 +273,99 @@ install_opencode() {
     if [ "$action" = "uninstall" ]; then
         echo -e "${YELLOW}Uninstalling English Ssam from OpenCode...${NC}"
         rm -rf "$plugin_dir"
+        rm -f "$cmd_dest"
+        if [ -f "$config_file" ] && command -v python3 &> /dev/null; then
+            python3 -c "
+import json
+import sys
+
+config_path = '$config_file'
+skill_path = '$skill_dest'
+try:
+    with open(config_path, 'r') as f:
+        config = json.load(f)
+    
+    if 'instructions' in config:
+        config['instructions'] = [i for i in config['instructions'] if i != skill_path]
+    
+    with open(config_path, 'w') as f:
+        json.dump(config, f, indent=2)
+except Exception as e:
+    print(f'Warning: Could not update config: {e}', file=sys.stderr)
+"
+        fi
         echo -e "${GREEN}Uninstalled successfully!${NC}"
         return
     fi
     
     echo -e "${BLUE}$verb English Ssam for OpenCode (global)...${NC}"
     mkdir -p "$plugin_dir"
+    mkdir -p "$command_dir"
     
     if command -v curl &> /dev/null; then
         curl -fsSL "$REPO_URL/plugin/english-ssam/plugin.md" -o "$plugin_dest"
         curl -fsSL "$REPO_URL/plugin/english-ssam/skill.md" -o "$skill_dest"
-        curl -fsSL "$REPO_URL/plugin/english-ssam/command.md" -o "$cmd_dest"
+        curl -fsSL "$REPO_URL/command/english-ssam.md" -o "$cmd_dest"
     elif command -v wget &> /dev/null; then
         wget -q "$REPO_URL/plugin/english-ssam/plugin.md" -O "$plugin_dest"
         wget -q "$REPO_URL/plugin/english-ssam/skill.md" -O "$skill_dest"
-        wget -q "$REPO_URL/plugin/english-ssam/command.md" -O "$cmd_dest"
+        wget -q "$REPO_URL/command/english-ssam.md" -O "$cmd_dest"
     fi
     
-    echo -e "${GREEN}$done_verb successfully!${NC}"
+    # Register plugin in opencode.json instructions array
+    if [ -f "$config_file" ]; then
+        if command -v python3 &> /dev/null; then
+            python3 -c "
+import json
+import sys
+
+config_path = '$config_file'
+skill_path = '$skill_dest'
+
+try:
+    with open(config_path, 'r') as f:
+        config = json.load(f)
+    
+    # Ensure instructions array exists
+    if 'instructions' not in config:
+        config['instructions'] = []
+    
+    already_registered = skill_path in config['instructions']
+    
+    if not already_registered:
+        config['instructions'].append(skill_path)
+        with open(config_path, 'w') as f:
+            json.dump(config, f, indent=2)
+        print('registered')
+    else:
+        print('already_registered')
+except Exception as e:
+    print(f'error: {e}', file=sys.stderr)
+    sys.exit(1)
+"
+            if [ $? -eq 0 ]; then
+                echo -e "${GREEN}$done_verb successfully!${NC}"
+            else
+                echo -e "${YELLOW}Warning: Could not register in opencode.json automatically${NC}"
+                echo -e "Please add manually to your ${YELLOW}$config_file${NC}:"
+                echo -e "  \"instructions\": [\"$skill_dest\"]"
+            fi
+        else
+            echo -e "${YELLOW}Warning: python3 not found. Please register manually.${NC}"
+            echo -e "Add to ${YELLOW}$config_file${NC} instructions array:"
+            echo -e "  \"$skill_dest\""
+        fi
+    else
+        echo -e "${YELLOW}Warning: opencode.json not found at $config_file${NC}"
+        echo -e "After creating it, add to instructions array:"
+        echo -e "  \"$skill_dest\""
+    fi
+    
     echo -e "Plugin: ${YELLOW}$plugin_dir${NC}"
+    echo -e "Command: ${YELLOW}$cmd_dest${NC}"
     echo -e "Use ${YELLOW}/english-ssam${NC} to toggle on/off"
+    echo ""
+    echo -e "${CYAN}Note: Restart OpenCode for changes to take effect.${NC}"
 }
 
 install_cursor() {

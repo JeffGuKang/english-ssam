@@ -1,30 +1,26 @@
 ---
 name: english-ssam
-description: English Ssam (쌤) - Your friendly English tutor for AI coding assistants
-version: 1.4.0
+description: English Ssam - Your friendly English tutor for AI coding assistants
+version: 1.5.0
 author: Jeff Kang
 repository: https://github.com/JeffGuKang/english-ssam
 ---
 
 # English Ssam Plugin
 
-This plugin provides English tutoring while you code. It checks your prompts for grammar errors and suggests improvements, with special focus on common mistakes made by Korean speakers.
+English tutoring while you code. Checks prompts for grammar errors with focus on Korean speaker mistakes.
 
-## Plugin Structure
+## Installation (OpenCode)
 
-```
-plugin/english-ssam/
-├── plugin.md    # This file - plugin metadata and entry point
-├── skill.md     # Behavior rules for English correction
-└── command.md   # Slash command definitions
+```bash
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=opencode --global
 ```
 
-## Features
+## File Structure
 
-- **Real-time English correction** for every prompt
-- **Multiple modes**: check, confirm, auto, silent
-- **Korean speaker focus**: articles, prepositions, plurals, word order
-- **Slash commands** for toggling and configuration
+After installation, files are placed in:
+- `~/.config/opencode/command/english-ssam.md` - Slash command
+- `~/.config/opencode/plugin/english-ssam/skill.md` - Behavior instructions
 
 ## Commands
 
@@ -36,17 +32,7 @@ plugin/english-ssam/
 | `/english-ssam auto` | Auto Mode |
 | `/english-ssam silent` | Silent Mode |
 | `/english-ssam status` | Show current state |
-| `/english-ssam update` | Update to latest version |
-
-## Installation
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=opencode --global
-```
-
-## Usage
-
-Once installed, type `/english-ssam` to activate. The tutor will check your English in every subsequent message.
+| `/english-ssam help` | Show help |
 
 ## License
 
