@@ -1,5 +1,6 @@
 ---
 description: Toggle English Ssam (쌤) - Your friendly English tutor mode
+model: google/antigravity-gemini-3-flash
 ---
 
 Toggle English Ssam tutor mode. Arguments: $ARGUMENTS
