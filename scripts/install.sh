@@ -31,6 +31,7 @@ print_help() {
     echo "                    Supported: opencode, cursor, claude-code, copilot, windsurf, aider, continue, zed"
     echo "  --global          Install globally (user-wide)"
     echo "  --local           Install locally (current project)"
+    echo "  --update          Update to the latest version"
     echo "  --uninstall       Remove installation completely"
     echo "  --enable          Enable English Ssam (restore from disabled state)"
     echo "  --disable         Disable English Ssam temporarily (keeps backup)"
@@ -167,6 +168,13 @@ install_opencode() {
     local skill_dir=$(dirname "$skill_dest")
     local cmd_dir=$(dirname "$cmd_dest")
     
+    local verb="Installing"
+    local done_verb="Installed"
+    if [ "$action" = "update" ]; then
+        verb="Updating"
+        done_verb="Updated"
+    fi
+
     if [ "$action" = "uninstall" ]; then
         echo -e "${YELLOW}Uninstalling English Ssam from OpenCode...${NC}"
         rm -f "$skill_dest" "${skill_dest}.disabled"
@@ -175,7 +183,7 @@ install_opencode() {
         return
     fi
     
-    echo -e "${BLUE}Installing English Ssam for OpenCode (global)...${NC}"
+    echo -e "${BLUE}$verb English Ssam for OpenCode (global)...${NC}"
     mkdir -p "$skill_dir" "$cmd_dir"
     
     if command -v curl &> /dev/null; then
@@ -187,7 +195,7 @@ install_opencode() {
     fi
     
     rm -f "${skill_dest}.disabled" "${cmd_dest}.disabled"
-    echo -e "${GREEN}Installed successfully!${NC}"
+    echo -e "${GREEN}$done_verb successfully!${NC}"
     echo -e "Skill: ${YELLOW}$skill_dest${NC}"
     echo -e "Command: ${YELLOW}$cmd_dest${NC}"
     echo -e "Use ${YELLOW}/english-ssam${NC} to toggle on/off"
@@ -203,6 +211,13 @@ install_cursor() {
     
     local dest=".cursorrules"
     
+    local verb="Installing"
+    local done_verb="Installed"
+    if [ "$action" = "update" ]; then
+        verb="Updating"
+        done_verb="Updated"
+    fi
+
     if [ "$action" = "uninstall" ]; then
         echo -e "${YELLOW}Uninstalling English Ssam from Cursor...${NC}"
         rm -f "$dest" "${dest}.disabled"
@@ -210,10 +225,10 @@ install_cursor() {
         return
     fi
     
-    echo -e "${BLUE}Installing English Ssam for Cursor (local)...${NC}"
+    echo -e "${BLUE}$verb English Ssam for Cursor (local)...${NC}"
     download_rule "$dest"
     rm -f "${dest}.disabled"
-    echo -e "${GREEN}Installed successfully!${NC}"
+    echo -e "${GREEN}$done_verb successfully!${NC}"
     echo -e "File: ${YELLOW}$dest${NC}"
     echo -e "Use ${YELLOW}/english-ssam${NC} to toggle on/off"
 }
@@ -228,6 +243,13 @@ install_claude_code() {
     
     local dest="CLAUDE.md"
     
+    local verb="Installing"
+    local done_verb="Installed"
+    if [ "$action" = "update" ]; then
+        verb="Updating"
+        done_verb="Updated"
+    fi
+
     if [ "$action" = "uninstall" ]; then
         echo -e "${YELLOW}Uninstalling English Ssam from Claude Code...${NC}"
         rm -f "$dest" "${dest}.disabled"
@@ -235,10 +257,10 @@ install_claude_code() {
         return
     fi
     
-    echo -e "${BLUE}Installing English Ssam for Claude Code (local)...${NC}"
+    echo -e "${BLUE}$verb English Ssam for Claude Code (local)...${NC}"
     download_rule "$dest"
     rm -f "${dest}.disabled"
-    echo -e "${GREEN}Installed successfully!${NC}"
+    echo -e "${GREEN}$done_verb successfully!${NC}"
     echo -e "File: ${YELLOW}$dest${NC}"
     echo -e "Use ${YELLOW}/english-ssam${NC} to toggle on/off"
 }
@@ -253,6 +275,13 @@ install_copilot() {
     
     local dest=".github/copilot-instructions.md"
     
+    local verb="Installing"
+    local done_verb="Installed"
+    if [ "$action" = "update" ]; then
+        verb="Updating"
+        done_verb="Updated"
+    fi
+
     if [ "$action" = "uninstall" ]; then
         echo -e "${YELLOW}Uninstalling English Ssam from GitHub Copilot...${NC}"
         rm -f "$dest" "${dest}.disabled"
@@ -260,11 +289,11 @@ install_copilot() {
         return
     fi
     
-    echo -e "${BLUE}Installing English Ssam for GitHub Copilot (local)...${NC}"
+    echo -e "${BLUE}$verb English Ssam for GitHub Copilot (local)...${NC}"
     mkdir -p ".github"
     download_rule "$dest"
     rm -f "${dest}.disabled"
-    echo -e "${GREEN}Installed successfully!${NC}"
+    echo -e "${GREEN}$done_verb successfully!${NC}"
     echo -e "File: ${YELLOW}$dest${NC}"
     echo -e "Use ${YELLOW}/english-ssam${NC} to toggle on/off"
 }
@@ -279,6 +308,13 @@ install_windsurf() {
     
     local dest=".windsurfrules"
     
+    local verb="Installing"
+    local done_verb="Installed"
+    if [ "$action" = "update" ]; then
+        verb="Updating"
+        done_verb="Updated"
+    fi
+
     if [ "$action" = "uninstall" ]; then
         echo -e "${YELLOW}Uninstalling English Ssam from Windsurf...${NC}"
         rm -f "$dest" "${dest}.disabled"
@@ -286,10 +322,10 @@ install_windsurf() {
         return
     fi
     
-    echo -e "${BLUE}Installing English Ssam for Windsurf (local)...${NC}"
+    echo -e "${BLUE}$verb English Ssam for Windsurf (local)...${NC}"
     download_rule "$dest"
     rm -f "${dest}.disabled"
-    echo -e "${GREEN}Installed successfully!${NC}"
+    echo -e "${GREEN}$done_verb successfully!${NC}"
     echo -e "File: ${YELLOW}$dest${NC}"
     echo -e "Use ${YELLOW}/english-ssam${NC} to toggle on/off"
 }
@@ -317,7 +353,14 @@ install_aider() {
         return
     fi
     
-    echo -e "${BLUE}Installing English Ssam for Aider ($mode)...${NC}"
+    local verb="Installing"
+    local done_verb="Installed"
+    if [ "$action" = "update" ]; then
+        verb="Updating"
+        done_verb="Updated"
+    fi
+
+    echo -e "${BLUE}$verb English Ssam for Aider ($mode)...${NC}"
     download_rule "$prompt_dest"
     rm -f "${prompt_dest}.disabled"
     
@@ -332,7 +375,7 @@ install_aider() {
         echo "  - $prompt_dest" >> "$config_dest"
     fi
     
-    echo -e "${GREEN}Installed successfully!${NC}"
+    echo -e "${GREEN}$done_verb successfully!${NC}"
     echo -e "Files: ${YELLOW}$config_dest${NC}, ${YELLOW}$prompt_dest${NC}"
     echo -e "Use ${YELLOW}/english-ssam${NC} to toggle on/off"
 }
@@ -356,12 +399,19 @@ install_continue() {
         return
     fi
     
-    echo -e "${BLUE}Installing English Ssam for Continue (global)...${NC}"
+    local verb="Installing"
+    local done_verb="Installed"
+    if [ "$action" = "update" ]; then
+        verb="Updating"
+        done_verb="Updated"
+    fi
+
+    echo -e "${BLUE}$verb English Ssam for Continue (global)...${NC}"
     mkdir -p "$config_dir"
     download_rule "$dest"
     rm -f "${dest}.disabled"
     
-    echo -e "${GREEN}Installed: $dest${NC}"
+    echo -e "${GREEN}$done_verb: $dest${NC}"
     echo ""
     echo -e "${YELLOW}To complete setup, add to your $config_dir/config.json:${NC}"
     echo '  "customInstructions": "Follow instructions in ~/.continue/english-ssam.md"'
@@ -379,6 +429,13 @@ install_zed() {
     
     local dest=".zed/prompt.md"
     
+    local verb="Installing"
+    local done_verb="Installed"
+    if [ "$action" = "update" ]; then
+        verb="Updating"
+        done_verb="Updated"
+    fi
+
     if [ "$action" = "uninstall" ]; then
         echo -e "${YELLOW}Uninstalling English Ssam from Zed...${NC}"
         rm -f "$dest" "${dest}.disabled"
@@ -386,11 +443,11 @@ install_zed() {
         return
     fi
     
-    echo -e "${BLUE}Installing English Ssam for Zed (local)...${NC}"
+    echo -e "${BLUE}$verb English Ssam for Zed (local)...${NC}"
     mkdir -p ".zed"
     download_rule "$dest"
     rm -f "${dest}.disabled"
-    echo -e "${GREEN}Installed successfully!${NC}"
+    echo -e "${GREEN}$done_verb successfully!${NC}"
     echo -e "File: ${YELLOW}$dest${NC}"
     echo -e "Use ${YELLOW}/english-ssam${NC} to toggle on/off"
 }
@@ -409,6 +466,9 @@ for arg in "$@"; do
             ;;
         --local)
             MODE="local"
+            ;;
+        --update)
+            ACTION="update"
             ;;
         --uninstall)
             ACTION="uninstall"
@@ -500,7 +560,10 @@ case $TOOL in
         ;;
 esac
 
-if [ "$ACTION" = "install" ]; then
+if [ "$ACTION" = "update" ]; then
+    echo ""
+    echo -e "${GREEN}English Ssam has been updated to the latest version!${NC}"
+elif [ "$ACTION" = "install" ]; then
     echo ""
     echo -e "${GREEN}English Ssam is ready to help you improve your English!${NC}"
     echo -e "Use ${YELLOW}--disable${NC} to temporarily turn off, ${YELLOW}--enable${NC} to restore."
