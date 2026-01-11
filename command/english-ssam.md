@@ -20,4 +20,9 @@ If "check", "confirm", "auto", or "silent": Set that mode.
 
 If "help": Show available commands and links.
 
+If "update": Run this command and show result:
+```bash
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=opencode --global --update
+```
+
 Keep response brief. No explanations needed.
