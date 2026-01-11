@@ -1,6 +1,6 @@
 ---
 description: Toggle English Ssam (쌤) - Your friendly English tutor mode
-model: gemini-3-flash
+model: opencode/grok-code
 ---
 
 # English Ssam Toggle Command
