@@ -41,42 +41,42 @@ Run the following command in your terminal for your preferred tool:
 
 ### Cursor (Project Local)
 ```bash
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh | bash -s -- --tool=cursor --local
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=cursor --local
 ```
 
 ### OpenCode (Global)
 ```bash
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh | bash -s -- --tool=opencode --global
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=opencode --global
 ```
 
 ### Claude Code CLI (Project Local)
 ```bash
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh | bash -s -- --tool=claude-code --local
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=claude-code --local
 ```
 
 ### GitHub Copilot (Project Local)
 ```bash
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh | bash -s -- --tool=copilot --local
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=copilot --local
 ```
 
 ### Windsurf (Project Local)
 ```bash
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh | bash -s -- --tool=windsurf --local
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=windsurf --local
 ```
 
 ### Aider (Global)
 ```bash
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh | bash -s -- --tool=aider --global
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=aider --global
 ```
 
 ### Continue.dev (Global)
 ```bash
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh | bash -s -- --tool=continue --global
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=continue --global
 ```
 
 ### Zed (Project Local)
 ```bash
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh | bash -s -- --tool=zed --local
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=zed --local
 ```
 
 ## ✨ What You'll See
@@ -109,7 +109,7 @@ English Ssam focuses on common challenges for Korean speakers:
 
 ## 🛠️ Manual Installation
 
-If you prefer to install manually, download the [ENGLISH_SSAM.md](https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/ENGLISH_SSAM.md) file and add its content to your AI assistant's system prompt or custom instructions.
+If you prefer to install manually, download the [ENGLISH_SSAM.md](https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/ENGLISH_SSAM.md) file and add its content to your AI assistant's system prompt or custom instructions.
 
 ## 🗑️ Uninstall
 
@@ -117,7 +117,7 @@ To remove the installation, add the `--uninstall` flag to the install command:
 
 ```bash
 # Example for Cursor
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/english-ssam/main/scripts/install.sh | bash -s -- --tool=cursor --local --uninstall
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=cursor --local --uninstall
 ```
 
 ## 🤝 Contributing
