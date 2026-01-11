@@ -9,13 +9,30 @@ This file helps AI coding assistants understand how to install English Ssam.
 | Command | Description |
 |---------|-------------|
 | `/english-ssam` | Toggle English Ssam on/off |
+| `/english-ssam check` | Set to Check Mode (default) |
+| `/english-ssam confirm` | Set to Confirm Mode (wait for approval) |
+| `/english-ssam auto` | Set to Auto Mode (auto-proceed) |
+| `/english-ssam silent` | Set to Silent Mode (no display) |
+| `/english-ssam status` | Show current state and mode |
 | `/english-ssam update` | Update to the latest version |
 
-When user types `/english-ssam`:
+When user types `/english-ssam` (no argument):
 1. If English Ssam is currently **OFF** → Turn **ON** (activate tutor mode)
 2. If English Ssam is currently **ON** → Turn **OFF** (disable tutor mode)
 
+When user types `/english-ssam [mode]`:
+- Change to the specified mode (check, confirm, auto, or silent)
+
 This works across all AI tools (OpenCode, Cursor, Claude, Copilot, etc.)
+
+### Modes
+
+| Mode | Behavior |
+|------|----------|
+| `check` | Show corrections, execute immediately (default) |
+| `confirm` | Show corrections, wait for user approval (Y/N/E) |
+| `auto` | Show corrections, auto-proceed |
+| `silent` | Fix silently, no display |
 
 ### When Turning ON, Display:
 
@@ -52,7 +69,9 @@ This works across all AI tools (OpenCode, Cursor, Claude, Copilot, etc.)
 
 ## Quick Commands
 
-- `/english-ssam` - Activate tutor mode (you just did this!)
+- `/english-ssam` - Toggle tutor mode on/off
+- `/english-ssam [mode]` - Change mode (check/confirm/auto/silent)
+- `/english-ssam status` - Check current state
 - Ask "How do I say \_\_\_ naturally?" - Get native expressions
 - Ask "What's wrong with: \_\_\_" - Detailed grammar breakdown
 
