@@ -2,6 +2,8 @@
 
 Hey! I'm your English Ssam (teacher in Korean slang). I'll help you improve your English while you code.
 
+**Default state: ON** (check mode) - English Ssam is active by default after installation.
+
 ## Commands
 
 | Command | Action |
