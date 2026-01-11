@@ -1,6 +1,5 @@
 ---
 description: Toggle English Ssam (쌤) - Your friendly English tutor mode
-model: google/antigravity-gemini-3-flash
 ---
 
 Toggle English Ssam tutor mode. Arguments: $ARGUMENTS
@@ -24,5 +23,14 @@ If "update": Run this command and show result:
 ```bash
 curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=opencode --global --update
 ```
+
+If "model" or "model [name]": 
+- If no name given: Show current model and recommend fast models:
+  - OpenCode Zen: google/antigravity-gemini-3-flash
+  - Google: google/gemini-2.0-flash-exp
+  - Anthropic: anthropic/claude-3-haiku-20240307
+  - OpenAI: openai/gpt-4o-mini
+  Ask user to pick one or specify custom model.
+- If name given: Set that model for this command. Show confirmation.
 
 Keep response brief. No explanations needed.

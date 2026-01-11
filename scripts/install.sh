@@ -363,8 +363,40 @@ except Exception as e:
     
     echo -e "Plugin: ${YELLOW}$plugin_dir${NC}"
     echo -e "Command: ${YELLOW}$cmd_dest${NC}"
-    echo -e "Use ${YELLOW}/english-ssam${NC} to toggle on/off"
+    
+    # Ask for preferred model on first install (not update)
+    if [ "$action" != "update" ]; then
+        echo ""
+        echo -e "${CYAN}Choose a fast model for /english-ssam command:${NC}"
+        echo -e "  ${YELLOW}1${NC}) google/antigravity-gemini-3-flash (OpenCode Zen - recommended)"
+        echo -e "  ${YELLOW}2${NC}) google/gemini-2.0-flash-exp"
+        echo -e "  ${YELLOW}3${NC}) anthropic/claude-3-haiku-20240307"
+        echo -e "  ${YELLOW}4${NC}) openai/gpt-4o-mini"
+        echo -e "  ${YELLOW}5${NC}) Skip (use default model)"
+        echo ""
+        read -p "Enter choice [1-5]: " model_choice
+        
+        local selected_model=""
+        case $model_choice in
+            1) selected_model="google/antigravity-gemini-3-flash" ;;
+            2) selected_model="google/gemini-2.0-flash-exp" ;;
+            3) selected_model="anthropic/claude-3-haiku-20240307" ;;
+            4) selected_model="openai/gpt-4o-mini" ;;
+            *) selected_model="" ;;
+        esac
+        
+        if [ -n "$selected_model" ]; then
+            # Add model to command frontmatter
+            if command -v sed &> /dev/null; then
+                sed -i.bak "s/^description:/model: $selected_model\ndescription:/" "$cmd_dest"
+                rm -f "${cmd_dest}.bak"
+                echo -e "${GREEN}Model set to: $selected_model${NC}"
+            fi
+        fi
+    fi
+    
     echo ""
+    echo -e "Use ${YELLOW}/english-ssam${NC} to toggle on/off"
     echo -e "${CYAN}Note: Restart OpenCode for changes to take effect.${NC}"
 }
 
