@@ -268,7 +268,13 @@ install_opencode() {
     local plugin_dest="$plugin_dir/plugin.md"
     local skill_dest="$plugin_dir/skill.md"
     local cmd_dest="$command_dir/english-ssam.md"
-    local config_file="$HOME/.config/opencode/opencode.json"
+    
+    local config_file=""
+    if [ -f "$HOME/.config/opencode/opencode.jsonc" ]; then
+        config_file="$HOME/.config/opencode/opencode.jsonc"
+    elif [ -f "$HOME/.config/opencode/opencode.json" ]; then
+        config_file="$HOME/.config/opencode/opencode.json"
+    fi
     
     local verb="Installing"
     local done_verb="Installed"
@@ -281,16 +287,20 @@ install_opencode() {
         echo -e "${YELLOW}Uninstalling English Ssam from OpenCode...${NC}"
         rm -rf "$plugin_dir"
         rm -f "$cmd_dest"
-        if [ -f "$config_file" ] && command -v python3 &> /dev/null; then
+        if [ -n "$config_file" ] && command -v python3 &> /dev/null; then
             python3 -c "
 import json
+import re
 import sys
 
 config_path = '$config_file'
 skill_path = '$skill_dest'
 try:
     with open(config_path, 'r') as f:
-        config = json.load(f)
+        content = f.read()
+    content_no_comments = re.sub(r'//.*$', '', content, flags=re.MULTILINE)
+    content_no_comments = re.sub(r'/\*.*?\*/', '', content_no_comments, flags=re.DOTALL)
+    config = json.loads(content_no_comments)
     
     if 'instructions' in config:
         config['instructions'] = [i for i in config['instructions'] if i != skill_path]
@@ -319,11 +329,12 @@ except Exception as e:
         wget -q "$REPO_URL/command/english-ssam.md" -O "$cmd_dest"
     fi
     
-    # Register plugin in opencode.json instructions array
-    if [ -f "$config_file" ]; then
+    # Register plugin in opencode.json/jsonc instructions array
+    if [ -n "$config_file" ]; then
         if command -v python3 &> /dev/null; then
             python3 -c "
 import json
+import re
 import sys
 
 config_path = '$config_file'
@@ -331,9 +342,11 @@ skill_path = '$skill_dest'
 
 try:
     with open(config_path, 'r') as f:
-        config = json.load(f)
+        content = f.read()
+    content_no_comments = re.sub(r'//.*$', '', content, flags=re.MULTILINE)
+    content_no_comments = re.sub(r'/\*.*?\*/', '', content_no_comments, flags=re.DOTALL)
+    config = json.loads(content_no_comments)
     
-    # Ensure instructions array exists
     if 'instructions' not in config:
         config['instructions'] = []
     
@@ -353,7 +366,7 @@ except Exception as e:
             if [ $? -eq 0 ]; then
                 echo -e "${GREEN}$done_verb successfully!${NC}"
             else
-                echo -e "${YELLOW}Warning: Could not register in opencode.json automatically${NC}"
+                echo -e "${YELLOW}Warning: Could not register in config automatically${NC}"
                 echo -e "Please add manually to your ${YELLOW}$config_file${NC}:"
                 echo -e "  \"instructions\": [\"$skill_dest\"]"
             fi
@@ -363,7 +376,7 @@ except Exception as e:
             echo -e "  \"$skill_dest\""
         fi
     else
-        echo -e "${YELLOW}Warning: opencode.json not found at $config_file${NC}"
+        echo -e "${YELLOW}Warning: opencode.json(c) not found${NC}"
         echo -e "After creating it, add to instructions array:"
         echo -e "  \"$skill_dest\""
     fi
