@@ -67,7 +67,7 @@ get_file_path() {
     
     case $tool in
         opencode)
-            echo "$HOME/.config/opencode/instructions/english-ssam.md"
+            echo "$HOME/.config/opencode/skill/english-ssam.md"
             ;;
         cursor)
             echo ".cursorrules"
@@ -162,22 +162,35 @@ install_opencode() {
         echo -e "${YELLOW}OpenCode only supports global installation${NC}"
     fi
     
-    local dest="$HOME/.config/opencode/instructions/english-ssam.md"
-    local dir=$(dirname "$dest")
+    local skill_dest="$HOME/.config/opencode/skill/english-ssam.md"
+    local cmd_dest="$HOME/.config/opencode/command/english-ssam.md"
+    local skill_dir=$(dirname "$skill_dest")
+    local cmd_dir=$(dirname "$cmd_dest")
     
     if [ "$action" = "uninstall" ]; then
         echo -e "${YELLOW}Uninstalling English Ssam from OpenCode...${NC}"
-        rm -f "$dest" "${dest}.disabled"
+        rm -f "$skill_dest" "${skill_dest}.disabled"
+        rm -f "$cmd_dest" "${cmd_dest}.disabled"
         echo -e "${GREEN}Uninstalled successfully!${NC}"
         return
     fi
     
     echo -e "${BLUE}Installing English Ssam for OpenCode (global)...${NC}"
-    mkdir -p "$dir"
-    download_rule "$dest"
-    rm -f "${dest}.disabled"
+    mkdir -p "$skill_dir" "$cmd_dir"
+    
+    if command -v curl &> /dev/null; then
+        curl -fsSL "$REPO_URL/$RULE_FILE" -o "$skill_dest"
+        curl -fsSL "$REPO_URL/command/english-ssam.md" -o "$cmd_dest"
+    elif command -v wget &> /dev/null; then
+        wget -q "$REPO_URL/$RULE_FILE" -O "$skill_dest"
+        wget -q "$REPO_URL/command/english-ssam.md" -O "$cmd_dest"
+    fi
+    
+    rm -f "${skill_dest}.disabled" "${cmd_dest}.disabled"
     echo -e "${GREEN}Installed successfully!${NC}"
-    echo -e "File: ${YELLOW}$dest${NC}"
+    echo -e "Skill: ${YELLOW}$skill_dest${NC}"
+    echo -e "Command: ${YELLOW}$cmd_dest${NC}"
+    echo -e "Use ${YELLOW}/english-ssam${NC} to toggle on/off"
 }
 
 install_cursor() {
@@ -202,6 +215,7 @@ install_cursor() {
     rm -f "${dest}.disabled"
     echo -e "${GREEN}Installed successfully!${NC}"
     echo -e "File: ${YELLOW}$dest${NC}"
+    echo -e "Use ${YELLOW}/english-ssam${NC} to toggle on/off"
 }
 
 install_claude_code() {
@@ -226,6 +240,7 @@ install_claude_code() {
     rm -f "${dest}.disabled"
     echo -e "${GREEN}Installed successfully!${NC}"
     echo -e "File: ${YELLOW}$dest${NC}"
+    echo -e "Use ${YELLOW}/english-ssam${NC} to toggle on/off"
 }
 
 install_copilot() {
@@ -251,6 +266,7 @@ install_copilot() {
     rm -f "${dest}.disabled"
     echo -e "${GREEN}Installed successfully!${NC}"
     echo -e "File: ${YELLOW}$dest${NC}"
+    echo -e "Use ${YELLOW}/english-ssam${NC} to toggle on/off"
 }
 
 install_windsurf() {
@@ -275,6 +291,7 @@ install_windsurf() {
     rm -f "${dest}.disabled"
     echo -e "${GREEN}Installed successfully!${NC}"
     echo -e "File: ${YELLOW}$dest${NC}"
+    echo -e "Use ${YELLOW}/english-ssam${NC} to toggle on/off"
 }
 
 install_aider() {
@@ -317,6 +334,7 @@ install_aider() {
     
     echo -e "${GREEN}Installed successfully!${NC}"
     echo -e "Files: ${YELLOW}$config_dest${NC}, ${YELLOW}$prompt_dest${NC}"
+    echo -e "Use ${YELLOW}/english-ssam${NC} to toggle on/off"
 }
 
 install_continue() {
@@ -347,6 +365,8 @@ install_continue() {
     echo ""
     echo -e "${YELLOW}To complete setup, add to your $config_dir/config.json:${NC}"
     echo '  "customInstructions": "Follow instructions in ~/.continue/english-ssam.md"'
+    echo ""
+    echo -e "Use ${YELLOW}/english-ssam${NC} to toggle on/off"
 }
 
 install_zed() {
@@ -372,6 +392,7 @@ install_zed() {
     rm -f "${dest}.disabled"
     echo -e "${GREEN}Installed successfully!${NC}"
     echo -e "File: ${YELLOW}$dest${NC}"
+    echo -e "Use ${YELLOW}/english-ssam${NC} to toggle on/off"
 }
 
 TOOL=""
