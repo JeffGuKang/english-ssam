@@ -116,24 +116,26 @@ teardown() {
 # OpenCode Tests
 # ====================
 
-@test "opencode install creates skill and command files" {
+@test "opencode install creates plugin directory" {
     setup_mock_download "# English Ssam Test Content"
     
     run bash "$(get_install_script)" --tool=opencode --global
     [ "$status" -eq 0 ]
-    [ -f "$HOME/.config/opencode/skill/english-ssam.md" ]
-    [ -f "$HOME/.config/opencode/command/english-ssam.md" ]
+    [ -d "$HOME/.config/opencode/plugin/english-ssam" ]
+    [ -f "$HOME/.config/opencode/plugin/english-ssam/plugin.md" ]
+    [ -f "$HOME/.config/opencode/plugin/english-ssam/skill.md" ]
+    [ -f "$HOME/.config/opencode/plugin/english-ssam/command.md" ]
 }
 
-@test "opencode uninstall removes files" {
-    mkdir -p "$HOME/.config/opencode/skill" "$HOME/.config/opencode/command"
-    echo "test" > "$HOME/.config/opencode/skill/english-ssam.md"
-    echo "test" > "$HOME/.config/opencode/command/english-ssam.md"
+@test "opencode uninstall removes plugin directory" {
+    mkdir -p "$HOME/.config/opencode/plugin/english-ssam"
+    echo "test" > "$HOME/.config/opencode/plugin/english-ssam/plugin.md"
+    echo "test" > "$HOME/.config/opencode/plugin/english-ssam/skill.md"
+    echo "test" > "$HOME/.config/opencode/plugin/english-ssam/command.md"
     
     run bash "$(get_install_script)" --tool=opencode --global --uninstall
     [ "$status" -eq 0 ]
-    [ ! -f "$HOME/.config/opencode/skill/english-ssam.md" ]
-    [ ! -f "$HOME/.config/opencode/command/english-ssam.md" ]
+    [ ! -d "$HOME/.config/opencode/plugin/english-ssam" ]
 }
 
 # ====================
@@ -232,21 +234,26 @@ teardown() {
 # Continue Tests
 # ====================
 
-@test "continue install creates file" {
+@test "continue install creates plugin directory" {
     setup_mock_download "# English Ssam Test Content"
     
     run bash "$(get_install_script)" --tool=continue --global
     [ "$status" -eq 0 ]
-    [ -f "$HOME/.continue/english-ssam.md" ]
+    [ -d "$HOME/.continue/plugin/english-ssam" ]
+    [ -f "$HOME/.continue/plugin/english-ssam/plugin.md" ]
+    [ -f "$HOME/.continue/plugin/english-ssam/skill.md" ]
+    [ -f "$HOME/.continue/plugin/english-ssam/command.md" ]
 }
 
-@test "continue uninstall removes file" {
-    mkdir -p "$HOME/.continue"
-    echo "test" > "$HOME/.continue/english-ssam.md"
+@test "continue uninstall removes plugin directory" {
+    mkdir -p "$HOME/.continue/plugin/english-ssam"
+    echo "test" > "$HOME/.continue/plugin/english-ssam/plugin.md"
+    echo "test" > "$HOME/.continue/plugin/english-ssam/skill.md"
+    echo "test" > "$HOME/.continue/plugin/english-ssam/command.md"
     
     run bash "$(get_install_script)" --tool=continue --global --uninstall
     [ "$status" -eq 0 ]
-    [ ! -f "$HOME/.continue/english-ssam.md" ]
+    [ ! -d "$HOME/.continue/plugin/english-ssam" ]
 }
 
 # ====================

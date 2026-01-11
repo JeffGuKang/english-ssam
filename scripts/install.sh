@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-VERSION="1.3.0"
+VERSION="1.4.0"
 REPO_URL="https://raw.githubusercontent.com/JeffGuKang/english-ssam/main"
 RULE_FILE="ENGLISH_SSAM.md"
 VERSION_CHECK_FILE="$HOME/.english-ssam-last-check"
@@ -161,7 +161,7 @@ get_file_path() {
     
     case $tool in
         opencode)
-            echo "$HOME/.config/opencode/skill/english-ssam.md"
+            echo "$HOME/.config/opencode/plugin/english-ssam"
             ;;
         cursor)
             echo ".cursorrules"
@@ -183,7 +183,7 @@ get_file_path() {
             fi
             ;;
         continue)
-            echo "$HOME/.continue/english-ssam.md"
+            echo "$HOME/.continue/plugin/english-ssam"
             ;;
         zed)
             echo ".zed/prompt.md"
@@ -200,10 +200,10 @@ check_status() {
     echo -e "${BLUE}English Ssam Status for $tool:${NC}"
     echo ""
     
-    if [ -f "$file_path" ]; then
+    if [ -d "$file_path" ] || [ -f "$file_path" ]; then
         echo -e "  Status: ${GREEN}ENABLED${NC} ✓"
-        echo -e "  File: $file_path"
-    elif [ -f "$disabled_path" ]; then
+        echo -e "  Path: $file_path"
+    elif [ -d "$disabled_path" ] || [ -f "$disabled_path" ]; then
         echo -e "  Status: ${YELLOW}DISABLED${NC} (backup exists)"
         echo -e "  Backup: $disabled_path"
         echo -e "  Use ${YELLOW}--enable${NC} to restore"
@@ -219,12 +219,12 @@ disable_tool() {
     local file_path=$(get_file_path "$tool" "$mode")
     local disabled_path="${file_path}.disabled"
     
-    if [ -f "$file_path" ]; then
+    if [ -d "$file_path" ] || [ -f "$file_path" ]; then
         mv "$file_path" "$disabled_path"
         echo -e "${YELLOW}Disabled English Ssam for $tool${NC}"
         echo -e "Backup saved to: ${YELLOW}$disabled_path${NC}"
         echo -e "Use ${GREEN}--enable${NC} to restore"
-    elif [ -f "$disabled_path" ]; then
+    elif [ -d "$disabled_path" ] || [ -f "$disabled_path" ]; then
         echo -e "${YELLOW}English Ssam is already disabled for $tool${NC}"
     else
         echo -e "${RED}English Ssam is not installed for $tool${NC}"
@@ -237,11 +237,11 @@ enable_tool() {
     local file_path=$(get_file_path "$tool" "$mode")
     local disabled_path="${file_path}.disabled"
     
-    if [ -f "$disabled_path" ]; then
+    if [ -d "$disabled_path" ] || [ -f "$disabled_path" ]; then
         mv "$disabled_path" "$file_path"
         echo -e "${GREEN}Enabled English Ssam for $tool${NC}"
-        echo -e "File restored: ${YELLOW}$file_path${NC}"
-    elif [ -f "$file_path" ]; then
+        echo -e "Path restored: ${YELLOW}$file_path${NC}"
+    elif [ -d "$file_path" ] || [ -f "$file_path" ]; then
         echo -e "${GREEN}English Ssam is already enabled for $tool${NC}"
     else
         echo -e "${RED}No backup found. Please install first.${NC}"
@@ -256,10 +256,10 @@ install_opencode() {
         echo -e "${YELLOW}OpenCode only supports global installation${NC}"
     fi
     
-    local skill_dest="$HOME/.config/opencode/skill/english-ssam.md"
-    local cmd_dest="$HOME/.config/opencode/command/english-ssam.md"
-    local skill_dir=$(dirname "$skill_dest")
-    local cmd_dir=$(dirname "$cmd_dest")
+    local plugin_dir="$HOME/.config/opencode/plugin/english-ssam"
+    local plugin_dest="$plugin_dir/plugin.md"
+    local skill_dest="$plugin_dir/skill.md"
+    local cmd_dest="$plugin_dir/command.md"
     
     local verb="Installing"
     local done_verb="Installed"
@@ -270,27 +270,26 @@ install_opencode() {
 
     if [ "$action" = "uninstall" ]; then
         echo -e "${YELLOW}Uninstalling English Ssam from OpenCode...${NC}"
-        rm -f "$skill_dest" "${skill_dest}.disabled"
-        rm -f "$cmd_dest" "${cmd_dest}.disabled"
+        rm -rf "$plugin_dir"
         echo -e "${GREEN}Uninstalled successfully!${NC}"
         return
     fi
     
     echo -e "${BLUE}$verb English Ssam for OpenCode (global)...${NC}"
-    mkdir -p "$skill_dir" "$cmd_dir"
+    mkdir -p "$plugin_dir"
     
     if command -v curl &> /dev/null; then
-        curl -fsSL "$REPO_URL/$RULE_FILE" -o "$skill_dest"
-        curl -fsSL "$REPO_URL/command/english-ssam.md" -o "$cmd_dest"
+        curl -fsSL "$REPO_URL/plugin/english-ssam/plugin.md" -o "$plugin_dest"
+        curl -fsSL "$REPO_URL/plugin/english-ssam/skill.md" -o "$skill_dest"
+        curl -fsSL "$REPO_URL/plugin/english-ssam/command.md" -o "$cmd_dest"
     elif command -v wget &> /dev/null; then
-        wget -q "$REPO_URL/$RULE_FILE" -O "$skill_dest"
-        wget -q "$REPO_URL/command/english-ssam.md" -O "$cmd_dest"
+        wget -q "$REPO_URL/plugin/english-ssam/plugin.md" -O "$plugin_dest"
+        wget -q "$REPO_URL/plugin/english-ssam/skill.md" -O "$skill_dest"
+        wget -q "$REPO_URL/plugin/english-ssam/command.md" -O "$cmd_dest"
     fi
     
-    rm -f "${skill_dest}.disabled" "${cmd_dest}.disabled"
     echo -e "${GREEN}$done_verb successfully!${NC}"
-    echo -e "Skill: ${YELLOW}$skill_dest${NC}"
-    echo -e "Command: ${YELLOW}$cmd_dest${NC}"
+    echo -e "Plugin: ${YELLOW}$plugin_dir${NC}"
     echo -e "Use ${YELLOW}/english-ssam${NC} to toggle on/off"
 }
 
@@ -482,12 +481,15 @@ install_continue() {
     fi
     
     local config_dir="$HOME/.continue"
-    local dest="$config_dir/english-ssam.md"
+    local plugin_dir="$config_dir/plugin/english-ssam"
+    local plugin_dest="$plugin_dir/plugin.md"
+    local skill_dest="$plugin_dir/skill.md"
+    local cmd_dest="$plugin_dir/command.md"
     
     if [ "$action" = "uninstall" ]; then
         echo -e "${YELLOW}Uninstalling English Ssam from Continue...${NC}"
-        rm -f "$dest" "${dest}.disabled"
-        echo -e "${GREEN}Removed: $dest${NC}"
+        rm -rf "$plugin_dir"
+        echo -e "${GREEN}Removed: $plugin_dir${NC}"
         echo -e "${YELLOW}Note: Please manually update customInstructions in $config_dir/config.json${NC}"
         return
     fi
@@ -500,14 +502,22 @@ install_continue() {
     fi
 
     echo -e "${BLUE}$verb English Ssam for Continue (global)...${NC}"
-    mkdir -p "$config_dir"
-    download_rule "$dest"
-    rm -f "${dest}.disabled"
+    mkdir -p "$plugin_dir"
     
-    echo -e "${GREEN}$done_verb: $dest${NC}"
+    if command -v curl &> /dev/null; then
+        curl -fsSL "$REPO_URL/plugin/english-ssam/plugin.md" -o "$plugin_dest"
+        curl -fsSL "$REPO_URL/plugin/english-ssam/skill.md" -o "$skill_dest"
+        curl -fsSL "$REPO_URL/plugin/english-ssam/command.md" -o "$cmd_dest"
+    elif command -v wget &> /dev/null; then
+        wget -q "$REPO_URL/plugin/english-ssam/plugin.md" -O "$plugin_dest"
+        wget -q "$REPO_URL/plugin/english-ssam/skill.md" -O "$skill_dest"
+        wget -q "$REPO_URL/plugin/english-ssam/command.md" -O "$cmd_dest"
+    fi
+    
+    echo -e "${GREEN}$done_verb: $plugin_dir${NC}"
     echo ""
     echo -e "${YELLOW}To complete setup, add to your $config_dir/config.json:${NC}"
-    echo '  "customInstructions": "Follow instructions in ~/.continue/english-ssam.md"'
+    echo '  "customInstructions": "Follow instructions in ~/.continue/plugin/english-ssam/skill.md"'
     echo ""
     echo -e "Use ${YELLOW}/english-ssam${NC} to toggle on/off"
 }

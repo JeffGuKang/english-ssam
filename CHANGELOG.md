@@ -5,6 +5,22 @@ All notable changes to English Ssam will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.0] - 2026-01-11
+
+### Added
+- **Plugin architecture**: New plugin-based structure for better organization
+  - OpenCode: `~/.config/opencode/plugin/english-ssam/`
+  - Continue: `~/.continue/plugin/english-ssam/`
+- **Plugin files**:
+  - `plugin.md` - Plugin metadata and entry point
+  - `skill.md` - Behavior rules for English correction
+  - `command.md` - Slash command definitions
+
+### Changed
+- Migrated from `skill/` + `command/` to unified `plugin/` directory structure
+- Updated install paths for OpenCode and Continue
+- Improved disable/enable to support directory-based plugins
+
 ## [1.3.0] - 2026-01-11
 
 ### Added

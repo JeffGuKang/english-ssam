@@ -118,7 +118,7 @@ First, check which AI tool the user is using by looking at:
 ### Tool-Specific Commands
 
 ```bash
-# OpenCode (global)
+# OpenCode (global - creates ~/.config/opencode/plugin/english-ssam/)
 curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=opencode --global
 
 # Cursor (local - creates .cursorrules)
@@ -136,7 +136,7 @@ curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/script
 # Aider (global)
 curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=aider --global
 
-# Continue.dev (global)
+# Continue.dev (global - creates ~/.continue/plugin/english-ssam/)
 curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=continue --global
 
 # Zed (local - creates .zed/prompt.md)
