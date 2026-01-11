@@ -24,7 +24,7 @@
 Just tell your AI assistant:
 
 ```
-install english-ssam locally
+Install english-ssam by following https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/README.md
 ```
 
 or
@@ -129,5 +129,5 @@ Contributions are welcome! If you have suggestions for new tips or focus areas, 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
-**Created by [Jeff Kang](https://github.com/code-yeongyu)**  
+**Created by [Jeff Kang](https://www.linkedin.com/in/jeffgukang/)**  
 *Helping you code better and speak better.*

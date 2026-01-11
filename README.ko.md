@@ -139,7 +139,7 @@ curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/script
 
 ## 📄 라이선스
 
-MIT © [Jeff Kang](https://github.com/code-yeongyu)
+MIT © [Jeff Kang](https://www.linkedin.com/in/jeffgukang/)
 
 ---
 
