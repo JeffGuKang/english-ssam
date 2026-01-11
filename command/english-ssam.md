@@ -17,7 +17,8 @@ This command accepts an optional argument. Parse the user's input to determine t
 4. If user typed `/english-ssam confirm` → **Set Confirm Mode**
 5. If user typed `/english-ssam auto` → **Set Auto Mode**
 6. If user typed `/english-ssam silent` → **Set Silent Mode**
-7. If user typed `/english-ssam [unknown]` → **Show error and list valid options**
+7. If user typed `/english-ssam update` → **Run Update Command**
+8. If user typed `/english-ssam [unknown]` → **Show error and list valid options**
 
 ## Available Commands
 
@@ -29,6 +30,7 @@ This command accepts an optional argument. Parse the user's input to determine t
 | `/english-ssam auto` | Set to Auto Mode |
 | `/english-ssam silent` | Set to Silent Mode |
 | `/english-ssam status` | Show current state and mode |
+| `/english-ssam update` | Update to latest version |
 
 ---
 
@@ -217,6 +219,34 @@ English Ssam mode set to: **[mode name]**
 | `/english-ssam auto` | Auto Mode |
 | `/english-ssam silent` | Silent Mode |
 | `/english-ssam status` | Show status |
+| `/english-ssam update` | Update to latest |
+```
+
+---
+
+## When Update Requested (`/english-ssam update`), Display and Execute:
+
+```
+# 🔄 Updating English Ssam...
+
+Fetching latest version from GitHub...
+```
+
+Then run the appropriate update command based on the detected tool:
+
+```bash
+# Detect current tool and run update
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=[detected-tool] --[global|local] --update
+```
+
+After update completes, display:
+
+```
+# ✅ English Ssam Updated!
+
+Successfully updated to the latest version.
+
+Changes will take effect in your next session.
 ```
 
 ---
