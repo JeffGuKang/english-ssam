@@ -119,23 +119,26 @@ teardown() {
 @test "opencode install creates plugin directory" {
     setup_mock_download "# English Ssam Test Content"
     
-    run bash "$(get_install_script)" --tool=opencode --global
+    # Use bash -c to handle the model selection prompt via pipe
+    run bash -c "echo 5 | bash $(get_install_script) --tool=opencode --global"
     [ "$status" -eq 0 ]
     [ -d "$HOME/.config/opencode/plugin/english-ssam" ]
     [ -f "$HOME/.config/opencode/plugin/english-ssam/plugin.md" ]
     [ -f "$HOME/.config/opencode/plugin/english-ssam/skill.md" ]
-    [ -f "$HOME/.config/opencode/plugin/english-ssam/command.md" ]
+    [ -f "$HOME/.config/opencode/command/english-ssam.md" ]
 }
 
 @test "opencode uninstall removes plugin directory" {
     mkdir -p "$HOME/.config/opencode/plugin/english-ssam"
+    mkdir -p "$HOME/.config/opencode/command"
     echo "test" > "$HOME/.config/opencode/plugin/english-ssam/plugin.md"
     echo "test" > "$HOME/.config/opencode/plugin/english-ssam/skill.md"
-    echo "test" > "$HOME/.config/opencode/plugin/english-ssam/command.md"
+    echo "test" > "$HOME/.config/opencode/command/english-ssam.md"
     
     run bash "$(get_install_script)" --tool=opencode --global --uninstall
     [ "$status" -eq 0 ]
     [ ! -d "$HOME/.config/opencode/plugin/english-ssam" ]
+    [ ! -f "$HOME/.config/opencode/command/english-ssam.md" ]
 }
 
 # ====================
