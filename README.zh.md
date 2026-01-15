@@ -6,6 +6,20 @@
 
 ## 📦 快速安装
 
+### 方法 1：使用 opencode.json (推荐 npm 方式)
+
+将 `opencode-english-ssam` 添加到您的 `opencode.json` (或全局设置 `~/.config/opencode/opencode.json`) 的 `plugin` 列表中：
+
+```json
+{
+  "plugin": ["opencode-english-ssam"]
+}
+```
+
+OpenCode 将自动安装并启用它。
+
+### 方法 2：使用终端 (手动安装)
+
 在终端运行以下命令：
 
 ```bash

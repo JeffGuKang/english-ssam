@@ -6,6 +6,20 @@
 
 ## 📦 빠른 설치
 
+### 방법 1: opencode.json 사용 (npm 추천 방식)
+
+`opencode.json` (전역 설정의 경우 `~/.config/opencode/opencode.json`)의 `plugin` 항목에 `opencode-english-ssam`을 추가하세요:
+
+```json
+{
+  "plugin": ["opencode-english-ssam"]
+}
+```
+
+OpenCode가 자동으로 설치하고 활성화합니다.
+
+### 방법 2: 터미널 사용 (수동 설치)
+
 터미널에서 아래 명령어를 실행하세요:
 
 ```bash

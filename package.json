@@ -1,6 +1,6 @@
 {
   "name": "opencode-english-ssam",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "English tutor plugin for OpenCode - Your friendly Ssam (teacher) that corrects and improves your English while coding",
   "keywords": [
     "opencode",
@@ -24,11 +24,16 @@
     "scripts/",
     "command/",
     "plugin/",
+    "src/",
     "README.md",
     "README.ko.md",
     "README.ja.md",
     "README.zh.md"
   ],
+  "main": "src/index.ts",
+  "devDependencies": {
+    "@opencode-ai/plugin": "latest"
+  },
   "scripts": {
     "test": "bats tests/install/",
     "test:all": "./tests/run_all_tests.sh",

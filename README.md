@@ -6,6 +6,20 @@
 
 ## 📦 Quick Install
 
+### Method 1: Using opencode.json (Recommended for npm)
+
+Add `opencode-english-ssam` to your `opencode.json` (or `~/.config/opencode/opencode.json` for global):
+
+```json
+{
+  "plugin": ["opencode-english-ssam"]
+}
+```
+
+OpenCode will automatically install and enable it.
+
+### Method 2: Using Terminal (Manual)
+
 Run the following command in your terminal:
 
 ```bash

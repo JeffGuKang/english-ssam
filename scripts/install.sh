@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-VERSION="1.6.0"
+VERSION="1.7.0"
 REPO_URL="https://raw.githubusercontent.com/JeffGuKang/english-ssam/main"
 VERSION_CHECK_FILE="$HOME/.english-ssam-last-check"
 CHECK_INTERVAL_DAYS=7

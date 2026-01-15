@@ -6,6 +6,20 @@
 
 ## 📦 クイックインストール
 
+### 方法 1: opencode.json を使用する (npm 推奨)
+
+`opencode-english-ssam` を `opencode.json` (グローバルの場合は `~/.config/opencode/opencode.json`) の `plugin` 配列に追加してください：
+
+```json
+{
+  "plugin": ["opencode-english-ssam"]
+}
+```
+
+OpenCode が自動的にインストールし、有効化します。
+
+### 方法 2: ターミナルを使用する (手動)
+
 ターミナルで以下のコマンドを実行してください：
 
 ```bash
