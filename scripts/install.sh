@@ -218,7 +218,9 @@ for arg in "$@"; do
         --enable) ACTION="enable" ;;
         --disable) ACTION="disable" ;;
         --status) ACTION="status" ;;
+        --global|--local) ;;
         --help) print_banner; print_help; exit 0 ;;
+        *) echo -e "${RED}Unknown option: $arg${NC}"; print_help; exit 1 ;;
     esac
 done
 
