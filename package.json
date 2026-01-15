@@ -1,16 +1,9 @@
 {
-  "name": "english-ssam",
-  "version": "1.5.6",
-  "description": "English tutor for AI coding assistants - Your friendly Ssam (teacher) that corrects and improves your English while coding",
+  "name": "opencode-english-ssam",
+  "version": "1.6.0",
+  "description": "English tutor plugin for OpenCode - Your friendly Ssam (teacher) that corrects and improves your English while coding",
   "keywords": [
     "opencode",
-    "cursor",
-    "claude-code",
-    "github-copilot",
-    "windsurf",
-    "aider",
-    "continue",
-    "zed",
     "english",
     "grammar",
     "tutor",
@@ -27,7 +20,6 @@
     "url": "https://github.com/JeffGuKang/english-ssam"
   },
   "files": [
-    "ENGLISH_SSAM.md",
     "AGENTS.md",
     "scripts/",
     "command/",
@@ -40,13 +32,6 @@
   "scripts": {
     "test": "bats tests/install/",
     "test:all": "./tests/run_all_tests.sh",
-    "install:opencode": "./scripts/install.sh --tool=opencode --global",
-    "install:cursor": "./scripts/install.sh --tool=cursor --local",
-    "install:claude-code": "./scripts/install.sh --tool=claude-code --local",
-    "install:copilot": "./scripts/install.sh --tool=copilot --local",
-    "install:windsurf": "./scripts/install.sh --tool=windsurf --local",
-    "install:aider": "./scripts/install.sh --tool=aider --global",
-    "install:continue": "./scripts/install.sh --tool=continue --global",
-    "install:zed": "./scripts/install.sh --tool=zed --local"
+    "install": "./scripts/install.sh --tool=opencode --global"
   }
 }

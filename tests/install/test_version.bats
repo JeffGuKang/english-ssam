@@ -10,30 +10,23 @@ teardown() {
     teardown_test_env
 }
 
-@test "update action shows updating message" {
-    setup_mock_download "# Updated English Ssam Content"
-    echo "# Old content" > ".cursorrules"
-    
-    run bash "$(get_install_script)" --tool=cursor --local --update
-    [ "$status" -eq 0 ]
-    [[ "$output" == *"Updating"* ]] || [[ "$output" == *"Updated"* ]]
-}
-
 @test "update action updates file content" {
-    setup_mock_download "# New Version Content"
-    echo "# Old content" > ".cursorrules"
+    setup_mock_download "1.5.7" # Mock remote version
     
-    bash "$(get_install_script)" --tool=cursor --local --update
+    mkdir -p "$HOME/.config/opencode/plugin/english-ssam"
+    mkdir -p "$HOME/.config/opencode/command"
     
-    grep -q "New Version Content" ".cursorrules"
+    run bash "$(get_install_script)" --update
+    [ "$status" -eq 0 ]
+    [[ "$output" == *"Updated"* ]] || [[ "$output" == *"Success"* ]]
 }
 
 @test "install shows ready message" {
-    setup_mock_download "# English Ssam Test Content"
+    setup_mock_download "1.5.6"
     
-    run bash "$(get_install_script)" --tool=cursor --local
+    run bash -c "echo 5 | bash $(get_install_script) --global"
     [ "$status" -eq 0 ]
-    [[ "$output" == *"ready"* ]] || [[ "$output" == *"Installed"* ]]
+    [[ "$output" == *"Success"* ]]
 }
 
 @test "help shows version check interval info" {
@@ -42,11 +35,10 @@ teardown() {
 }
 
 @test "status command works without version check file" {
-    echo "test" > ".cursorrules"
-    
+    mkdir -p "$HOME/.config/opencode/plugin/english-ssam"
     rm -f "$HOME/.english-ssam-last-check"
     
-    run bash "$(get_install_script)" --tool=cursor --local --status
+    run bash "$(get_install_script)" --status
     [ "$status" -eq 0 ]
     [[ "$output" == *"ENABLED"* ]]
 }

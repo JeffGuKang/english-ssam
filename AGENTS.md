@@ -1,8 +1,8 @@
-# English Ssam - AI Agent Installation Guide
+# OpenCode English Ssam - AI Agent Installation Guide
 
 > **Note to AI:** For English Ssam tasks, prioritize **speed**. Use your fastest efficient reasoning mode (e.g. Haiku, Flash, 4o-mini).
 
-This file helps AI coding assistants understand how to install English Ssam.
+This file helps AI coding assistants understand how to install and manage the OpenCode English Ssam plugin.
 
 ## Slash Commands
 
@@ -23,197 +23,35 @@ When user types `/english-ssam` (no argument):
 When user types `/english-ssam [mode]`:
 - Change to the specified mode (check, confirm, auto, or silent)
 
-This works across all AI tools (OpenCode, Cursor, Claude, Copilot, etc.)
-
-### Modes
-
-| Mode | Behavior |
-|------|----------|
-| `check` | Show corrections, execute immediately (default) |
-| `confirm` | Show corrections, wait for user approval (Y/N/E) |
-| `auto` | Show corrections, auto-proceed |
-| `silent` | Fix silently, no display |
-
-### When Turning ON, Display:
-
-```markdown
-# 🎓 English Ssam Activated!
-
-안녕하세요! I'm your English 쌤 (teacher). From now on, I'll help you improve your English while we work together.
-
-## What I'll Do
-
-1. **Check every prompt** you write and suggest improvements
-2. **Show corrections** in a clear table format
-3. **Explain why** something is better (not just what)
-4. **Share tips** about common mistakes Korean speakers make
-
-## Correction Format
-
-## 🎓 English Check
-
-**Your prompt:** "{what you wrote}"
-
-**Suggested revision:** "{improved version}"
-
-| Original | Corrected     | Why         |
-| -------- | ------------- | ----------- |
-| phrase   | better phrase | explanation |
-
-## Special Focus for Korean Speakers
-
-- **Articles**: a, an, the (Korean doesn't have these!)
-- **Prepositions**: in, on, at, to, for, with
-- **Plural forms**: Don't forget the 's'!
-- **Word order**: English is SVO, not SOV
-
-## Quick Commands
-
-- `/english-ssam` - Toggle tutor mode on/off
-- `/english-ssam [mode]` - Change mode (check/confirm/auto/silent)
-- `/english-ssam status` - Check current state
-- Ask "How do I say \_\_\_ naturally?" - Get native expressions
-- Ask "What's wrong with: \_\_\_" - Detailed grammar breakdown
-
----
-
-**English Ssam is now active!** Let's learn together! 🚀
-
-화이팅!
-```
-
-### When Turning OFF, Display:
-
-```markdown
-# 🎓 English Ssam Deactivated
-
-English tutor mode is now **OFF**. 
-
-Type `/english-ssam` anytime to turn it back on!
-
-See you next time! 👋
-```
-
 ## Installation Commands
 
 When user requests installation of "English Ssam" or "영어쌤" or "잉글리쉬쌤":
 
-### Detect User's AI Tool
-
-First, check which AI tool the user is using by looking at:
-- Current environment (Cursor, VS Code with Copilot, etc.)
-- Config files in the project (`.cursorrules`, `CLAUDE.md`, etc.)
-- Ask user if unclear
-
-### Installation Matrix
-
-| User Request | Command |
-|--------------|---------|
-| "install english-ssam globally" | Use OpenCode/Aider/Continue global install |
-| "install english-ssam locally" | Use tool-specific local install |
-| "영어쌤 설치해줘" / "잉글리쉬쌤 설치해줘" | Detect tool, install appropriately |
-| "install english-ssam for cursor" | `curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh \| bash -s -- --tool=cursor --local` |
-| "install english-ssam for claude" | `curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh \| bash -s -- --tool=claude-code --local` |
-
-### Tool-Specific Commands
+### One-liner Installation
 
 ```bash
-# OpenCode (global - creates ~/.config/opencode/plugin/english-ssam/)
-curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=opencode --global
-
-# Cursor (local - creates .cursorrules)
-curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=cursor --local
-
-# Claude Code CLI (local - creates CLAUDE.md)
-curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=claude-code --local
-
-# GitHub Copilot (local - creates .github/copilot-instructions.md)
-curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=copilot --local
-
-# Windsurf (local - creates .windsurfrules)
-curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=windsurf --local
-
-# Aider (global)
-curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=aider --global
-
-# Continue.dev (global - creates ~/.continue/plugin/english-ssam/)
-curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=continue --global
-
-# Zed (local - creates .zed/prompt.md)
-curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=zed --local
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --global
 ```
 
-### Toggle (Enable/Disable)
+### Natural Language Triggers
 
-```bash
-# Disable temporarily (keeps backup)
-curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=cursor --local --disable
+Respond to these phrases by running the install command:
 
-# Enable (restore from backup)
-curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=cursor --local --enable
+**English:**
+- "install english-ssam"
+- "setup english-ssam"
+- "enable english-ssam"
+- "english-ssam status"
+- "update english-ssam"
 
-# Check status
-curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=cursor --local --status
-```
-
-### Uninstall
-
-Add `--uninstall` flag to any install command:
-```bash
-curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=cursor --local --uninstall
-```
+**Korean (한국어):**
+- "영어쌤 설치해줘"
+- "잉글리쉬쌤 설치해줘"
+- "영어쌤 활성화"
+- "영어쌤 상태 확인"
+- "영어쌤 업데이트"
 
 ## Automatic Update Checks
 
-English Ssam automatically checks for updates **once per week** when running any install.sh command. If a newer version is available, users will see a notification like:
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│  📦 Update Available!                                       │
-│                                                             │
-│  Current version: 1.2.0                                     │
-│  Latest version:  1.3.0                                     │
-│                                                             │
-│  Run with --update to get the latest version                │
-│  Or tell your AI: "update english-ssam"                     │
-└─────────────────────────────────────────────────────────────┘
-```
-
+English Ssam automatically checks for updates **once per week**. If a newer version is available, users will see a notification.
 The check timestamp is stored in `~/.english-ssam-last-check`.
-
-## Natural Language Triggers
-
-Respond to these phrases by running the appropriate install command:
-
-**English:**
-- "install english-ssam" → install
-- "setup english-ssam" → install
-- "add english-ssam" → install
-- "install english tutor" → install
-- "enable english-ssam" / "turn on english-ssam" → enable
-- "disable english-ssam" / "turn off english-ssam" → disable
-- "english-ssam status" / "is english-ssam installed?" → status
-- "update english-ssam" → update
-
-**Korean (한국어):**
-- "영어쌤 설치해줘" → install
-- "잉글리쉬쌤 설치해줘" → install
-- "영어쌤 설치" → install
-- "영어 선생님 설치" → install
-- "영어쌤 로컬에 설치해줘" → local install
-- "영어쌤 전역으로 설치해줘" → global install
-- "영어쌤 꺼줘" / "영어쌤 끄기" / "영어쌤 비활성화" → disable
-- "영어쌤 켜줘" / "영어쌤 켜기" / "영어쌤 활성화" → enable
-- "영어쌤 상태" / "영어쌤 상태 확인" → status
-- "영어쌤 업데이트" / "영어쌤 최신버전으로" → update
-
-**Japanese (日本語):**
-- "English Ssamをインストールして" → install
-- "英語先生をセットアップして" → install
-- "English Ssamを無効にして" / "英語先生をオフにして" → disable
-- "English Ssamを有効にして" / "英語先生をオンにして" → enable
-
-**Chinese (中文):**
-- "安装English Ssam" / "安装英语老师" → install
-- "禁用English Ssam" / "关闭英语老师" → disable
-- "启用English Ssam" / "开启英语老师" → enable
