@@ -1,6 +1,6 @@
 {
   "name": "opencode-english-ssam",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "description": "English tutor plugin for OpenCode - Your friendly Ssam (teacher) that corrects and improves your English while coding",
   "keywords": [
     "opencode",
@@ -32,12 +32,26 @@
   ],
   "main": "src/index.ts",
   "devDependencies": {
-    "@opencode-ai/plugin": "latest"
+    "@opencode-ai/plugin": "latest",
+    "standard-version": "^9.5.0"
   },
   "scripts": {
     "test": "bats tests/install/",
     "test:all": "./tests/run_all_tests.sh",
     "prepublishOnly": "npm test",
-    "install": "./scripts/install.sh --tool=opencode --global"
+    "install": "./scripts/install.sh --tool=opencode --global",
+    "release": "standard-version"
+  },
+  "standard-version": {
+    "bumpFiles": [
+      {
+        "filename": "package.json",
+        "type": "json"
+      },
+      {
+        "filename": "VERSION",
+        "type": "plain-text"
+      }
+    ]
   }
 }
