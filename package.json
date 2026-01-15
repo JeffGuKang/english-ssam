@@ -17,7 +17,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/JeffGuKang/english-ssam"
+    "url": "git+https://github.com/JeffGuKang/english-ssam.git"
   },
   "files": [
     "AGENTS.md",
@@ -37,6 +37,7 @@
   "scripts": {
     "test": "bats tests/install/",
     "test:all": "./tests/run_all_tests.sh",
+    "prepublishOnly": "npm test",
     "install": "./scripts/install.sh --tool=opencode --global"
   }
 }
