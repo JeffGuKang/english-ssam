@@ -36,7 +36,9 @@
     "standard-version": "^9.5.0"
   },
   "scripts": {
-    "test": "bats tests/install/",
+    "test": "bats tests/install/ tests/commands/",
+    "test:install": "bats tests/install/",
+    "test:commands": "bats tests/commands/",
     "test:all": "./tests/run_all_tests.sh",
     "prepublishOnly": "npm test",
     "install": "./scripts/install.sh --tool=opencode --global",
