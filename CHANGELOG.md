@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.8.1](https://github.com/JeffGuKang/english-ssam/compare/v1.8.0...v1.8.1) (2026-01-19)
+
+
+### Bug Fixes
+
+* embed full command content and remove invalid --tool flag ([3853410](https://github.com/JeffGuKang/english-ssam/commit/38534108bf4673d2a4355b85fc9b7268ea43c400))
+
 ## 1.8.0 (2026-01-15)
 
 
