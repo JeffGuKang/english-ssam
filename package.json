@@ -41,7 +41,7 @@
     "test:commands": "bats tests/commands/",
     "test:all": "./tests/run_all_tests.sh",
     "prepublishOnly": "npm test",
-    "install": "./scripts/install.sh --tool=opencode --global",
+    "install": "./scripts/install.sh --global",
     "release": "standard-version"
   },
   "standard-version": {

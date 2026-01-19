@@ -15,13 +15,14 @@ If "off": Turn OFF and respond with:
 
 If "status": Show current state and links.
 
-If "check", "confirm", "auto", or "silent": Set that mode.
+If "check", "confirm", "auto", or "silent": Set that mode and show:
+🎓 **Mode: [MODE]** - [brief description of mode behavior]
 
 If "help": Show available commands and links.
 
 If "update": Run this command and show result:
 ```bash
-curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --tool=opencode --global --update
+curl -fsSL https://raw.githubusercontent.com/JeffGuKang/english-ssam/main/scripts/install.sh | bash -s -- --global --update
 ```
 
 If "model" or "model [name]": 
